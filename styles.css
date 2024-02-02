@@ -1,0 +1,32 @@
+.buscador{
+    padding-bottom: 10px;
+}
+
+.listaResult ul{
+
+    list-style-type: none;
+    padding: 0;
+    
+    
+}
+.resultado{
+    display:flex ;
+    padding: 10px 0;
+    position: relative;
+    
+
+}
+
+.iconos{
+    display:flex ;
+    width: 60px;
+    height: 60px;
+    padding-left: 20px;
+    position: absolute;
+    right: 1120px;
+    top:-09px;
+    gap: 10px;
+
+}
+
+

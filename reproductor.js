@@ -90,30 +90,166 @@ class Lista_canciones {
 
                     iconos.querySelector(".agregar-favorito").addEventListener("click", () => {
                         if (listaFavoritos.agregarFavorito(nuevaCancion)) {
-                            // Agregar el nombre de la canción a la lista de favoritos en el HTML
                             const nuevaLi = document.createElement("li");
-                            nuevaLi.textContent = nuevaCancion.nombre;
+                    
+                            const iconContainerfavoritos = document.createElement("div");
+                            iconContainerfavoritos.classList.add("iconos_favoritos");
+                    
+                            // Añadir los iconos al contenedor
+                            iconContainerfavoritos.innerHTML =  `
+                            <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>
+                            <svg class="agregar-playlist-favorito" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+            
+                        `;
+                    
+                            const cancionTextfavoritos = document.createElement("span");
+                            cancionTextfavoritos.textContent = `${nuevaCancion.nombre}`;
+                    
+                            // Agregar el nombre de la canción y los iconos al contenedor
+                            nuevaLi.appendChild(cancionTextfavoritos);
+                            nuevaLi.appendChild(iconContainerfavoritos);
+                    
                             document.getElementById("listaFavoritosCanciones").appendChild(nuevaLi);
+
+
+                            const ultimoIconofavoritos = iconContainerfavoritos.lastElementChild;
+                            ultimoIconofavoritos.addEventListener("click", () => {
+                                // Código para eliminar la canción de la playlist
+                                nuevaLi.remove();
+                                listaFavoritos.eliminarPlaylist(nuevaCancion);
+                                alert("Canción eliminada de Favoritos.");
+                            });
+
+                            const secondIconofavoritos = iconContainerfavoritos.children[1];
+
+                            secondIconofavoritos.addEventListener("click", () => {
+                                // Obtener el nombre de la canción
+                                const nombreCancion = nuevaCancion.nombre;
+                            
+                                // Crear un nuevo elemento <li> para la canción
+                                const nuevaLi = document.createElement("li");
+
+
+                                const iconContainerplaylist = document.createElement("div");
+                                iconContainerplaylist.classList.add("iconos_playlist");
     
+                                iconContainerplaylist.innerHTML =  `
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>
+                                <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+    
+       
+                            `;
+    
+                                const cancionTextplaylist = document.createElement("span");
+                                cancionTextplaylist.textContent = `${nuevaCancion.nombre}`;
+                                nuevaLi.appendChild(cancionTextplaylist)
+                                nuevaLi.appendChild(iconContainerplaylist)
+    
+                                document.getElementById("listaPlaylistCanciones").appendChild(nuevaLi);
+
+                                const ultimoIconoplaylist = iconContainerplaylist.lastElementChild;
+                                ultimoIconoplaylist.addEventListener("click", () => {
+                                    // Código para eliminar la canción de la playlist
+                                    nuevaLi.remove();
+                                    listaPlaylist.eliminarPlaylist(nuevaCancion);
+                                    alert("Canción eliminada de Favoritos.");
+                                });
+                            
+                                alert("Canción agregada a Playlist.");
+                            });
+
+                    
                             alert("Canción agregada a favoritos.");
                         } else {
                             alert("La canción ya está en la lista de favoritos.");
                         }
                     });
 
+                    
+
 
                     iconos.querySelector(".agregar-playlist").addEventListener("click", () => {
                         if (listaPlaylist.agregarPlaylist(nuevaCancion)) {
-                            // Agregar el nombre de la canción a la lista de favoritos en el HTML
                             const nuevaLi = document.createElement("li");
-                            nuevaLi.textContent = nuevaCancion.nombre;
+                            const iconContainerplaylist = document.createElement("div");
+                            iconContainerplaylist.classList.add("iconos_playlist");
+
+                            iconContainerplaylist.innerHTML =  `
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>
+                            <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+
+   
+                        `;
+
+                            const cancionTextplaylist = document.createElement("span");
+                            cancionTextplaylist.textContent = `${nuevaCancion.nombre}`;
+                            nuevaLi.appendChild(cancionTextplaylist)
+                            nuevaLi.appendChild(iconContainerplaylist)
+
                             document.getElementById("listaPlaylistCanciones").appendChild(nuevaLi);
+
+                            
+                            const ultimoIconoplaylist = iconContainerplaylist.lastElementChild;
+                            ultimoIconoplaylist.addEventListener("click", () => {
+                                // Código para eliminar la canción de la playlist
+                                nuevaLi.remove();
+                                listaPlaylist.eliminarPlaylist(nuevaCancion);
+                                alert("Canción eliminada de la playlist.");
+                            });
+
+
+                            
+                            const secondIconoplaylist = iconContainerplaylist.children[1];
+
+                            secondIconoplaylist.addEventListener("click", () => {
+                                // Obtener el nombre de la canción
+                                const nombreCancion = nuevaCancion.nombre;
+                            
+                                // Crear un nuevo elemento <li> para la canción
+                                const nuevaLi = document.createElement("li");
+
+
+                                const iconContainerfavoritos = document.createElement("div");
+                                iconContainerfavoritos.classList.add("iconos_playlist");
+    
+                                iconContainerfavoritos.innerHTML =  `
+                                <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>
+                                <svg class="agregar-playlist-favorito" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                
+                            `;
+    
+                                const cancionTextfavoritos = document.createElement("span");
+                                cancionTextfavoritos.textContent = `${nuevaCancion.nombre}`;
+                                nuevaLi.appendChild(cancionTextfavoritos)
+                                nuevaLi.appendChild(iconContainerfavoritos)
+    
+                                document.getElementById("listaFavoritosCanciones").appendChild(nuevaLi);
+
+                                const ultimoIconofavoritos = iconContainerfavoritos.lastElementChild;
+                                ultimoIconofavoritos.addEventListener("click", () => {
+                                    // Código para eliminar la canción de la playlist
+                                    nuevaLi.remove();
+                                    listaFavoritos.eliminarPlaylist(nuevaCancion);
+                                    alert("Canción eliminada de Favoritos.");
+                                });
+
+                                alert("Canción agregada a Favoritos.");
+                            });
+
     
                             alert("Canción agregada a playlist.");
+
+
                         } else {
                             alert("La canción ya está en la lista de playlist.");
                         }
+
                     });
+
     
                     // Devolver true cuando se agrega la canción
                     return true;

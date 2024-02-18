@@ -1,32 +1,165 @@
-.buscador{
-    padding-bottom: 10px;
+/*import bootstramp icons*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+:root{
+--transition: all 0.3s ease-in-out;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+}
+body{
+    max-width: 1200px;
+    padding: 24px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.listaResult ul{
+header{
 
-    list-style-type: none;
-    padding: 0;
+    nav{
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+
+        a{
+            text-decoration: none;
+            font-size: 36px;
+            font-weight: bolder;
+            
+        }
+
+        .content-buscador{
+            display: flex;
+            flex-direction: column;
+            gap: 10px; 
+
+            span{
+            font-size: 20px;
+            font-weight: bolder;
+            }
+
+            .buscador{
+            display: flex;
+            gap: 20px; 
+
+
+            .input-buscador{
+                position: relative;
+               
+                i{
+                    position: absolute;
+                    z-index: 1;
+                    
+                    /*centrar un elmento absolute*/
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: 10px;
+                }
+
+                input{
+                    outline: none;
+                    padding:3px 35px 3px 20px ;
+                    border-radius: 12px;
+                  
+                   
+                }
+            }
+            .btn-buscar{
+                
+                border-radius: 12px;
+                width: 70px;
+                transition: var(--transition);
+                cursor: pointer;
+
+            }
+            
+            }
+        }
+    }
+}
+
+main{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+
+    .contenedor-listas{
+        display: flex;
+        flex-direction: column;
+        gap: 45px;
+        width: 350px;
+
+        .lista{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-height: 50vh;
+            .lista-items{
+                overflow-y: scroll; 
+
+                .item{
+                    display: flex;
+                    gap: 20px;
+
+                    .iconos{
+                        display: flex;
+                        gap: 20px;
+                                
+                        }
+            }
+            
+            
+            
+
+            
+
+            }
+        }
+
+    }
+    .contenedor-portada{
+        display: flex;  
+        justify-content: center;  
+        flex-direction: column; 
+        img{
+            border-radius: 12px;
+            height: 300px;
+           
+        }
+
+        
+
+        .descripcion{
+
+            ul{
+                list-style: none;
+                padding: 15px 0px;
+            }
+            
+        }
+
+        .botones{
+            display: flex;  
+            justify-content: center; 
+            gap: 30px;
+            i{
+                transition: var(--transition);
+                cursor: pointer;
+                font-size: 25px;
+
+            }
+           
+        }
+
+    }
+
     
-    
-}
-.resultado{
-    display:flex ;
-    padding: 10px 0;
-    position: relative;
+
     
 
 }
-
-.iconos{
-    display:flex ;
-    width: 60px;
-    height: 60px;
-    padding-left: 20px;
-    position: absolute;
-    right: 1120px;
-    top:-09px;
-    gap: 10px;
-
-}
-
-

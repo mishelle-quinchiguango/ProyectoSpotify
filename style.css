@@ -17,14 +17,28 @@
 
 }
 
-.iconos{
-    display:flex ;
-    width: 60px;
-    height: 60px;
-    padding-left: 20px;
-    position: absolute;
-    right: 1120px;
-    top:-09px;
-    gap: 10px;
 
+
+/* Ajustar el tamaño de los iconos */
+.iconos svg {
+    width: 20px; /* Ajusta este valor según tu preferencia */
+    height: auto; /* Para mantener la proporción */
+  }
+  
+  /* Organizar los iconos en filas */
+  .iconos {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Espacio entre los iconos */
+  .iconos svg {
+    margin-right: 5px; /* Ajusta este valor según tu preferencia */
+    margin-bottom: 5px; /* Ajusta este valor según tu preferencia */
+  }
+  
+
+  .contenido {
+    display: flex;
+    align-items: center; /* Esto alineará verticalmente los elementos hijos al centro */
 }

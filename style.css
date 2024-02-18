@@ -24,6 +24,27 @@
     width: 20px; /* Ajusta este valor según tu preferencia */
     height: auto; /* Para mantener la proporción */
   }
+
+  .iconos_favoritos {
+    display: flex; /* Mostrar los iconos en línea */
+}
+
+.iconos_favoritos svg {
+    width: 20px; /* Tamaño deseado para los iconos */
+    height: auto; /* Tamaño deseado para los iconos */
+}
+
+
+.iconos_playlist {
+  display: flex; /* Mostrar los iconos en línea */
+}
+
+.iconos_playlist svg {
+  width: 20px; /* Tamaño deseado para los iconos */
+  height: auto; /* Tamaño deseado para los iconos */
+}
+
+
   
   /* Organizar los iconos en filas */
   .iconos {
